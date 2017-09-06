@@ -23,7 +23,7 @@ public class Errors {
 	 * @param e
 	 */
 	public void add(ValidationError e) {
-		synchronized(errors){
+		synchronized (errors) {
 			errors.add(e);
 		}
 	}
@@ -33,8 +33,10 @@ public class Errors {
 	 * @return
 	 */
 	public Collection<ValidationError> getHardErrors() {
-		return errors.stream().filter(e -> Severity.HARD.equals(e.getSeverity()))
-				.collect(Collectors.toList());
+		synchronized (errors) {
+			return errors.stream().filter(e -> Severity.HARD.equals(e.getSeverity()))
+					.collect(Collectors.toList());
+		}
 	}
 
 }
