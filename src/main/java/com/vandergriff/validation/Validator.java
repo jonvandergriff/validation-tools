@@ -1,7 +1,7 @@
 package com.vandergriff.validation;
 
-public interface Validator {
+public interface Validator<T> {
 
-	public Errors doValidate(Object item, Errors e);
+	public Errors doValidate(T item, Errors e);
 
 }
