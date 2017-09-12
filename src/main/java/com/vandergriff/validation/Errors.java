@@ -2,11 +2,19 @@ package com.vandergriff.validation;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-@Data
+/**
+ * 
+ * @author Jon Vandergriff
+ *
+ */
+@ToString
+@EqualsAndHashCode
 public class Errors {
 
 	private Collection<ValidationError> errors;
@@ -30,13 +38,30 @@ public class Errors {
 
 	/**
 	 * 
+	 * @param errors
+	 */
+	public void addAll(Collection<ValidationError> errors) {
+		errors.addAll(errors);
+	}
+
+	/**
+	 * 
 	 * @return
 	 */
 	public Collection<ValidationError> getHardErrors() {
 		synchronized (errors) {
-			return errors.stream().filter(e -> Severity.HARD.equals(e.getSeverity()))
+			return errors.stream()
+					.filter(e -> Severity.HARD.equals(e.getSeverity()))
 					.collect(Collectors.toList());
 		}
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Collection<ValidationError> getErrors() {
+		return Collections.unmodifiableCollection(errors);
 	}
 
 }

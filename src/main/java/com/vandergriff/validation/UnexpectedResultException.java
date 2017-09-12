@@ -17,8 +17,8 @@ public class UnexpectedResultException extends Exception {
 	 * @param enableSuppression
 	 * @param writableStackTrace
 	 */
-	public UnexpectedResultException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
+	public UnexpectedResultException(String message, Throwable cause,
+			boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}
 
